@@ -27,8 +27,8 @@ public class CientificoServiceImpl implements ICientificosService{
 	}
 
 	@Override
-	public Cientificos cientificosXID(int id) {
-		return iCientificosDAO.findById(id).get();
+	public Cientificos cientificosXID(String dni) {
+		return iCientificosDAO.findById(dni).get();
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class CientificoServiceImpl implements ICientificosService{
 	}
 
 	@Override
-	public void eliminarCientificos(int id) {
-		iCientificosDAO.deleteById(id);
+	public void eliminarCientificos(String dni) {
+		iCientificosDAO.deleteById(dni);
 	}
 
 }

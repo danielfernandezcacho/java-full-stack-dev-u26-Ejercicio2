@@ -33,9 +33,8 @@ public class Cientificos {
 	
 	//Atributos de la clase Cientificos
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column (name = "nombre")
+	private String dni;
+	@Column (name = "nombre_completo")
 	private String nombre;
 	
 	@OneToMany
@@ -47,23 +46,22 @@ public class Cientificos {
 		super();
 	}
 
+	public String getDni() {
+		return dni;
+	}
 
-	public Cientificos(int id, String nombre, List<Asignado> asignado) {
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public Cientificos(String dni, String nombre, List<Asignado> asignado) {
 		super();
-		this.id = id;
+		this.dni = dni;
 		this.nombre = nombre;
 		this.asignado = asignado;
 	}
 
 
-	public int getId() {
-		return id;
-	}
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 
 	public String getNombre() {
@@ -89,7 +87,7 @@ public class Cientificos {
 
 	@Override
 	public String toString() {
-		return "Cientificos [id=" + id + ", nombre=" + nombre + ", asignado=" + asignado + "]";
+		return "Cientificos [id=" + dni + ", nombre=" + nombre + ", asignado=" + asignado + "]";
 	}
 
 	}

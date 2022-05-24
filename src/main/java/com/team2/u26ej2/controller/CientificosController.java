@@ -51,23 +51,23 @@ public class CientificosController {
 	
 	
 	@GetMapping("/{id}")
-	public Cientificos CientificosXID(@PathVariable(name="id") int id) {
+	public Cientificos CientificosXID(@PathVariable(name="dni") String dni) {
 		
 		Cientificos Cientificos_xid= new Cientificos();
 		
-		Cientificos_xid=cientificoServiceImpl.cientificosXID(id);
+		Cientificos_xid=cientificoServiceImpl.cientificosXID(dni);
 
 		
 		return Cientificos_xid;
 	}
 	
 	@PutMapping("/{id}")
-	public Cientificos actualizarCientificos(@PathVariable(name="id")int id,@RequestBody Cientificos Cientificos) {
+	public Cientificos actualizarCientificos(@PathVariable(name="dni")String dni,@RequestBody Cientificos Cientificos) {
 		
 		Cientificos Cientificos_seleccionado= new Cientificos();
 		Cientificos Cientificos_actualizado= new Cientificos();
 		
-		Cientificos_seleccionado= cientificoServiceImpl.cientificosXID(id);
+		Cientificos_seleccionado= cientificoServiceImpl.cientificosXID(dni);
 		
 		Cientificos_seleccionado.setNombre(Cientificos.getNombre());
 		
@@ -78,7 +78,7 @@ public class CientificosController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void eleiminarCientificos(@PathVariable(name="id")int id) {
-		cientificoServiceImpl.eliminarCientificos(id);
+	public void eleiminarCientificos(@PathVariable(name="dni")String dni) {
+		cientificoServiceImpl.eliminarCientificos(dni);
 	}
 }

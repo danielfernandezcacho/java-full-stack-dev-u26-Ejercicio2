@@ -18,5 +18,5 @@ import com.team2.u26ej2.dto.Cientificos;
  * ICientificosDAO
  */
 
-public interface ICientificosDAO extends JpaRepository<Cientificos, Integer> {
+public interface ICientificosDAO extends JpaRepository<Cientificos, String> {
 }
