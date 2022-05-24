@@ -1,0 +1,84 @@
+/**
+ * u26-Ejercicio2 - com.team02.u26.ejercicio2.controller - CientificosController
+ *
+ * @author Daniel Fernández Cacho
+ * @author Joan Hurtado García
+ * @author Jose Antonio González Alcántara
+ * 
+ * Fecha de creación 24/05/2022
+ */
+package com.team2.u26ej2.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.team2.u26ej2.dto.Cientificos;
+import com.team2.u26ej2.service.CientificoServiceImpl;
+
+
+/**
+ * ProveedorController.java
+ *
+ */
+@RestController
+@RequestMapping("/Cientificos")
+public class CientificosController {
+
+	
+	@Autowired
+	CientificoServiceImpl cientificoServiceImpl;
+	
+	@GetMapping("/")
+	public List<Cientificos> listarCcursos(){
+		return cientificoServiceImpl.listarCientificos();
+	}
+	
+	
+	@PostMapping("/")
+	public Cientificos salvarCientificos(@RequestBody Cientificos curso) {
+		
+		return cientificoServiceImpl.guardarCientificos(curso);
+	}
+	
+	
+	@GetMapping("/{id}")
+	public Cientificos CientificosXID(@PathVariable(name="id") int id) {
+		
+		Cientificos Cientificos_xid= new Cientificos();
+		
+		Cientificos_xid=cientificoServiceImpl.cientificosXID(id);
+
+		
+		return Cientificos_xid;
+	}
+	
+	@PutMapping("/{id}")
+	public Cientificos actualizarCientificos(@PathVariable(name="id")int id,@RequestBody Cientificos Cientificos) {
+		
+		Cientificos Cientificos_seleccionado= new Cientificos();
+		Cientificos Cientificos_actualizado= new Cientificos();
+		
+		Cientificos_seleccionado= cientificoServiceImpl.cientificosXID(id);
+		
+		Cientificos_seleccionado.setNombre(Cientificos.getNombre());
+		
+		
+		Cientificos_actualizado = cientificoServiceImpl.actualizarCientificos(Cientificos_seleccionado);
+		
+		return Cientificos_actualizado;
+	}
+	
+	@DeleteMapping("/{id}")
+	public void eleiminarCientificos(@PathVariable(name="id")int id) {
+		cientificoServiceImpl.eliminarCientificos(id);
+	}
+}
